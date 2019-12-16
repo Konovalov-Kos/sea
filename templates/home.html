@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+Привет пользователь {{ user.username }}<br>
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+      <input type="hidden" name="newgame" value="true">
+        <input type="submit" value="Создать новую игру">
+    </form>
+<div>
+{% for g in mygames %}
+    Started: {{ g.start_time }} {% if g.board1.user == user %}Моя игра{% else %}Присоединялся к игре{% endif %}
+    {% if g.done %} Победиель: {{ g.winner.username }} {% else %}
+        <a href="{% url 'game' game_id=g.id %}">Продолжить игру</a>
+        {% if g.board2 %}
+            <a href="{% url 'giveup' game_id=g.id %}" onclick="return confirm('Точно хотите сдаться?')">Give up</a>
+        {% else %}
+            <a href="{% url 'giveup' game_id=g.id %}" onclick="return confirm('Точно хотите сдаться?')">Delete</a>
+        {% endif %}
+      {% endif %}
+{% endfor %}
+</div>
+
+<div>
+    <ul>
+        {% for g in existinggames %}
+        <li>Started: {{ g.start_time }} <a href="{% url 'game' game_id=g.id %}">Присоединиться</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

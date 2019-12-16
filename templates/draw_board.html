@@ -1,0 +1,23 @@
+<style>
+    .tb {
+        width: 20px;
+        height: 20px;
+        vert-align: middle;
+    }
+</style>
+{% load ship_status %}
+<table border="1" id="{{ pref }}_table">
+    {% for i in dsize %}
+    <tr>
+        {% for j in dsize %}
+        <td class="tb" id="{{ pref }}_{{ i }}_{{ j }}">{{ i }}_{{ j }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<script>
+{% for coord, status in b.items %}
+    document.getElementById("{{ pref }}_{{ coord.0 }}_{{ coord.1 }}").innerHTML = "{{ status|ship_status }}";
+{% endfor %}
+</script>

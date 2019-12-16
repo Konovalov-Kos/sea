@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if user.is_authenticated %}
+    Привет {{ user.username }}! <a href="{% url 'home' %}">Перейти в игру</a>  <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    Форма входа
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login\register">
+    </form>
+{% endif %}
+
+
+список героев
+
+<ul>
+{% for u in ulist %}
+    <li> {{ u.username }} </li>
+{% endfor %}
+</ul>
+
+
+
+</body>
+</html>

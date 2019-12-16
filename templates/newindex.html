@@ -1,0 +1,362 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" lang="en" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ TITLE }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,800" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" rel="stylesheet">
+    <link href="{% static 'assets/css/normalize.min.css' %}" rel="stylesheet">
+    <link href="../assets/css/hamburgers.min.css" rel="stylesheet">
+    <link href="../assets/css/style_flex.min.css" rel="stylesheet">
+    <link href="../assets/css/adaptive_flex.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="search">
+    <button type="button" class="btn btn-red close">×</button>
+    <form>
+        <input type="search" value="" placeholder="type keyword(s) here" />
+        <button type="submit" class="submit btn btn-blue">Search</button>
+    </form>
+</div>
+<div id="mobile_menu_block">
+    <div class="overlay"></div>
+    <nav id="mobile_menu">
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li class="has_sub"><a href="#">Portfolio</a>
+                <ul>
+                    <li><a href="#">Portfolio 2 column page</a></li>
+                    <li><a href="#">Portfolio 2 column page</a></li>
+                    <li><a href="#">Portfolio 2 column page</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+    </nav>
+</div>
+
+<header>
+    <div class="container">
+        <div id="logo">
+            <a href="#"><strong>Modus</strong> versus</a>
+        </div>
+        <div class="menu_search">
+            <nav id="main_menu">
+                <ul>
+                    {% for m in mainmenu %}
+                        {{ m.on_site }}
+                    {% endfor %}
+
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li class="has_sub"><a href="#">Portfolio</a>
+                        <div class="submenu">
+                            <ul>
+                                <li><a href="#">Portfolio 2 column page</a></li>
+                                <li><a href="#">Portfolio 2 column page</a></li>
+                                <li><a href="#">Portfolio 2 column page</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contacts</a></li>
+                    <li><a href="#search"><i class="fas fa-search"></i></a></li>
+                </ul>
+            </nav>
+            <div id="menu_toggle_wrap">
+                <button class="hamburger hamburger--elastic js-hamburger" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section id="slider_section">
+        <ul id="slider">
+            <li style="background-image: url('../assets/images/1234.jpg')">
+                <div class="slider_wrap">
+                    <h3 class="slider_title">Vestibulum</h3>
+                    <p>
+                        Maecenas tincidunt, augue et retrum condimentum, libero lectus mattis orci, ut commodo.
+                    </p>
+                </div>
+            </li>
+            <li style="background-image: url('../assets/images/1234.jpg')">
+                <div class="slider_wrap">
+                    <h3 class="slider_title">Vestibulum</h3>
+                    <p>
+                        Maecenas tincidunt, augue et retrum condimentum, libero lectus mattis orci, ut commodo.
+                    </p>
+                </div>
+            </li>
+            <li style="background-image: url('../assets/images/1234.jpg')">
+                <div class="slider_wrap">
+                    <h3 class="slider_title">Vestibulum</h3>
+                    <p>
+                        Maecenas tincidunt, augue et retrum condimentum, libero lectus mattis orci, ut commodo.
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <div class="panel container">
+        <div class="panel_text">
+            <h3>Some of our top services</h3>
+            <p>Ut eleifend libero sed neque rhoncus consequat. Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.</p>
+        </div>
+        <div class="panel_button">
+            <a href="#" class="btn btn-red upper">View More</a>
+        </div>
+    </div>
+
+    <div class="blocks container">
+        <div class="block_item">
+            <div class="block_icon">
+                <i class="far fa-thumbs-up"></i>
+            </div>
+            <div class="block_title">Suspendisse</div>
+            <div class="block_text">
+                <p>Quisque id tellus quris isus vehicula vehicula ut turpis. In eros nulla placerat vitae at, vehicula ut nunc.</p>
+            </div>
+            <div class="block_button">
+                <a href="#" class="btn btn-blue">read more</a>
+            </div>
+        </div>
+        <div class="block_item">
+            <div class="block_icon">
+                <i class="fas fa-key"></i>
+            </div>
+            <div class="block_title">Maecenas</div>
+            <div class="block_text">
+                <p>Ut eleifend libero sed neque rhoncus consequat. Maecenas tincidunt, augue et rutrum condimentum, libero lectus mattis orci, ut commodo.</p>
+            </div>
+            <div class="block_button">
+                <a href="#" class="btn btn-blue">read more</a>
+            </div>
+        </div>
+        <div class="block_item">
+            <div class="block_icon">
+                <i class="fas fa-flag"></i>
+            </div>
+            <div class="block_title">Aliquam</div>
+            <div class="block_text">
+                <p>Vivamus eget ante bibendum arcu vehicula ultricies. Integer venenatis mattis nisl, vitae pulvinar dui tempor non. </p>
+            </div>
+            <div class="block_button">
+                <a href="#" class="btn btn-blue">read more</a>
+            </div>
+        </div>
+        <div class="block_item">
+            <div class="block_icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <div class="block_title">Habitasse</div>
+            <div class="block_text">
+                <p>Astehicula ultricies. Integer venenatis mattis nisl, vitae pulvinar dui tempor non. </p>
+            </div>
+            <div class="block_button">
+                <a href="#" class="btn btn-blue">read more</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="why_modus" class="dark_gray_section">
+        <div class="center">
+            <h2 class="red_title upper">Why Modus versus?</h2>
+            <p class="subtitle">Capacitance cascading integer reflective interface data development high bus cache dithering transponder. </p>
+        </div>
+        <div class="screens_wrapper">
+            <div class="small_screens">
+                <div class="container">
+                    <div class="screen screen_1">
+                        <div class="screen_head">
+                            <ul><li></li><li></li><li></li><li></li></ul>
+                        </div>
+                        <div class="screen_body">your image</div>
+                    </div>
+                    <div class="screen screen_3">
+                        <div class="screen_head">
+                            <ul><li></li><li></li><li></li><li></li></ul>
+                        </div>
+                        <div class="screen_body">your image</div>
+                    </div>
+                </div>
+            </div>
+            <div class="big_screen">
+                <div class="container">
+                    <div class="screen screen_2">
+                        <div class="screen_head">
+                            <ul><li></li><li></li><li></li><li></li></ul>
+                        </div>
+                        <div class="screen_body">your image</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="who_choose_section">
+        <div class="container">
+            <div class="who_choose_block">
+                <h4>Why Choose Us ?</h4>
+                <ul>
+                    <li><i class="fas fa-arrow-right"></i>Qiusque at massa ipsum</li>
+                    <li><i class="fas fa-arrow-right"></i>Maecenas a lorem augue, egestas</li>
+                    <li><i class="fas fa-arrow-right"></i>Cras vitae felisat lacus eleifend</li>
+                    <li><i class="fas fa-arrow-right"></i>Etiam auctor diam pellentesque</li>
+                    <li><i class="fas fa-arrow-right"></i>Nulla ac massa at dolor</li>
+                    <li><i class="fas fa-arrow-right"></i>Condimentum eleifend vitae vitae</li>
+                </ul>
+            </div>
+            <div class="donut_block">
+                <p>Curabitur quis nisl in leo euismod venenatis eu in diam. Etiam auctor diam pellentesque lectus <a href="#">vehicula mattis</a>. Nulla ac massa at dolor condimentum eleifend vitae vitae urna.</p>
+                <div class="donut_wrap">
+                    <ul>
+                        <li id="donut_1"><div class="donut">50</div><span class="donut_label">Suspendisse</span></li>
+                        <li id="donut_2"><div class="donut">70</div><span class="donut_label">Maecenas</span></li>
+                        <li id="donut_3"><div class="donut">80</div><span class="donut_label">Aliquam</span></li>
+                        <li id="donut_4"><div class="donut">100</div><span class="donut_label">Habitasse</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="review_block">
+                <h4>What Client`s Say ?</h4>
+                <div class="review_text">
+                    <blockquote>
+                        <p><i>Curabitur quis nisl in leo euismod venenatis eu in diam. Etiam auctor diam pellentesque lectus vehicula mattis.</i> Nulla ac massa at dolor condimentum</p>
+                    </blockquote>
+                    <span class="review_author">Jhon Doe</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients_section">
+        <div class="clients container">
+            <div class="title_line">
+                <h4>Our Happy Clients</h4>
+            </div>
+            <div class="clients_slider_wrapper">
+                <ul id="clients_slider">
+                    {% for cl in ourclients %}
+                        <li><a href="{{ cl.link }}"><img src="{% static  %}" alt="{{ cl.name }}"></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<footer>
+    <div id="footer_top">
+        <div class="container">
+            <div id="footer_left">
+                <div class="footer_logo">
+                    <a href="#"><strong>Modus</strong> versus</a>
+                </div>
+                <div class="footer_description">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec .</p>
+                </div>
+                <div class="footer_contacts">
+                    <ul>
+                        <li><span>Phone</span><a href="tel:">182 2569 5896</a></li>
+                        <li><span>e-mail</span><a href="mailto:">info@modu.versus</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="footer_menu_left">
+                <div class="footer_menu">
+                    <ul>
+                        <li>Company</li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="footer_menu_right">
+                <div class="footer_menu">
+                    <ul>
+                        <li>Community</li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="footer_right">
+                <div class="footer_blog">
+                    <div class="fb_title">from the <span>Blog</span></div>
+                    <ul class="blog_line">
+                        <li>
+                            <div class="blog_img">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="blog_text">
+                                <div class="blog_title">
+                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
+                                </div>
+                                <div class="blog_date">
+                                    <time datetime="2013-05-26">26 May, 2013</time>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="blog_img">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <div class="blog_text">
+                                <div class="blog_title">
+                                    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a>
+                                </div>
+                                <div class="blog_date">
+                                    <time>26 May, 2013</time>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer_bottom">
+        <div class="container">
+            <div class="footer_copy">
+                <p>2019 ModusVersus</p>
+            </div>
+            <div class="footer_soc">
+                <ul>
+                   {% if FACEBOOK_URL != '' %} <li><a href="{{ FACEBOOK_URL }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li> {% endif %}
+                    <li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#" target="_blank"><i class="fas fa-rss"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script src="../assets/js/hamburgers.min.js"></script>
+<script src="../assets/js/onload.min.js"></script>
+</body>
+</html>

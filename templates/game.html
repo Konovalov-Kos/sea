@@ -1,0 +1,98 @@
+{% load static %}
+{% load ship_status %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/style_flex.min.css' %}" rel="stylesheet" />
+</head>
+<body>
+{% if game.board2 %}
+            <a href="{% url 'giveup' game_id=game.id %}" onclick="return confirm('Точно хотите сдаться?')">Give up</a>
+        {% else %}
+            <a href="{% url 'giveup' game_id=game.id %}" onclick="return confirm('Точно хотите сдаться?')">Delete</a>
+        {% endif %}
+
+{% if game.board1.user == user %}
+    {% if game.board1.ready_to_play %}
+        <div>
+            <h2>Моя доска</h2>
+            {% include "draw_board.html" with b=game.board1.player_view  pref="me"%}
+        </div>
+
+        <div>
+         <h2>Доска соперника</h2>
+            {% if game.board2 %}
+                 {% include "draw_board.html" with b=game.board2.opponent_view  pref="opponent" %}
+            {% else %}
+                Ожидаем второго игрока
+            {% endif %}
+         </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            Это джсон представление массива расставленных кораблей.
+            <textarea name="ships">[[[6,3],[3,3],[4,3],[5,3]],[[1,5],[2,5],[0,5]],[[5,6],[5,7],[5,5]],[[7,6],[7,5]],[[0,7],[1,7]],[[3,0],[3,1]],[[5,0]],[[8,0]],[[3,8]],[[1,0]]]</textarea>
+            <input type="submit">
+        </form>
+    {% endif %}
+{% endif %}
+
+{% if game.board2.user == user %}
+
+    {% if game.board2.ready_to_play %}
+        <div>
+        <h2>Моя доска</h2>
+            {% include "draw_board.html" with b=game.board2.player_view pref="me" %}
+        </div>
+
+        <div>
+        <h2>Доска соперника</h2>
+            {% include "draw_board.html" with b=game.board1.opponent_view pref="opponent" %}
+         </div>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            Это джсон представление массива расставленных кораблей.
+            <textarea name="ships">[[[6,3],[3,3],[4,3],[5,3]],[[1,5],[2,5],[0,5]],[[5,6],[5,7],[5,5]],[[7,6],[7,5]],[[0,7],[1,7]],[[3,0],[3,1]],[[5,0]],[[8,0]],[[3,8]],[[1,0]]]</textarea>
+            <input type="submit">
+        </form>
+    {% endif %}
+
+{% endif %}
+<script>
+    {% if game.board1.user == user %}
+        var roomName = "{{ game.board1.socket_room }}";
+    {% else %}
+        var roomName = "{{ game.board2.socket_room }}";
+    {% endif %}
+    var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/' + roomName + '/');
+
+    chatSocket.onmessage = function(e) {
+        console.log(e);
+        {#var data = JSON.parse(e.data);#}
+        {#var message = data['message'];#}
+        {#document.querySelector('#chat-log').value += (message + '\n');#}
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+
+    var elements = document.querySelectorAll("#opponent_table td");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener("click", function() {
+        console.log(this.getAttribute('id'));
+        chatSocket.send(JSON.stringify({
+            'message': this.getAttribute('id'),
+            "game_id": {{ game.pk }}
+        }));
+      });
+    }
+</script>
+
+</body>
+</html>
